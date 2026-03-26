@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameSpot | Level Up Your Reality</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#050505',
+                            gray: '#151515',
+                            light: '#C5C6C7',
+                            red: '#D00000',
+                            blue: '#0033A0',
+                            gold: '#FFD700'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Orbitron', 'sans-serif'],
+                        body: ['Rajdhani', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Rajdhani', sans-serif; background-color: #050505; color: #C5C6C7; }
+        h1, h2, h3, .logo-text { font-family: 'Orbitron', sans-serif; }
+        .text-glow-red { color: #D00000; text-shadow: 0 0 10px rgba(208, 0, 0, 0.5); }
+        .text-glow-blue { color: #0033A0; text-shadow: 0 0 10px rgba(0, 51, 160, 0.5); }
+        .btn-red { transition: all 0.3s ease; border: 2px solid #D00000; color: #D00000; }
+        .btn-red:hover { box-shadow: 0 0 15px #D00000; background-color: #D00000; color: #fff; }
+        .btn-blue { transition: all 0.3s ease; border: 2px solid #0033A0; color: #0033A0; }
+        .btn-blue:hover { box-shadow: 0 0 15px #0033A0; background-color: #0033A0; color: #fff; }
+        .news-mode #main-scroll-content { display: none; }
+        .news-mode #news { display: block; }
+        #news { display: none; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Navigazione -->
+    <nav class="bg-brand-gray border-b border-brand-red sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-32">
+                
+                <!-- LOGO SIZE: Modifica 'w-80' (320px) per cambiare la dimensione del logo -->
+                <div class="flex-shrink-0 cursor-pointer flex items-center" onclick="goToHome()">
+                    <img src="logo gamespot new.png" alt="GameSpot Logo" class="w-60 h-auto object-contain">
+                </div>
+
+                <!-- Menu Desktop -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <button onclick="scrollToSection('home')" class="nav-btn text-brand-red font-bold px-3 py-2 rounded-md text-xl">Home</button>
+                        <button onclick="scrollToSection('about')" class="nav-btn text-gray-300 hover:text-brand-red px-3 py-2 rounded-md text-lg">About Us</button>
+                        <button onclick="scrollToSection('services')" class="nav-btn text-gray-300 hover:text-brand-red px-3 py-2 rounded-md text-lg">Services</button>
+                        <button onclick="scrollToSection('feedback')" class="nav-btn text-gray-300 hover:text-brand-red px-3 py-2 rounded-md text-lg">FeedBack</button>
+                        <button onclick="scrollToSection('contact')" class="nav-btn text-gray-300 hover:text-brand-red px-3 py-2 rounded-md text-lg">Contact</button>
+                        <button onclick="openNews()" class="nav-btn text-gray-300 hover:text-brand-red px-3 py-2 rounded-md text-lg">News & Blog</button>
+                    </div>
+                </div>
+
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white">
+                        <i class="fa-solid fa-bars text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-gray border-t border-brand-red">
+            <div class="px-2 pt-2 pb-3 space-y-1 flex flex-col">
+                <button onclick="scrollToSection('home')" class="text-left text-brand-red block px-3 py-2 text-base">Home</button>
+                <button onclick="scrollToSection('about')" class="text-left text-gray-300 block px-3 py-2 text-base">About Us</button>
+                <button onclick="scrollToSection('services')" class="text-left text-gray-300 block px-3 py-2 text-base">Services</button>
+                <button onclick="scrollToSection('feedback')" class="text-left text-gray-300 block px-3 py-2 text-base">FeedBack</button>
+                <button onclick="scrollToSection('contact')" class="text-left text-gray-300 block px-3 py-2 text-base">Contact</button>
+                <button onclick="openNews()" class="text-left text-gray-300 block px-3 py-2 text-base">News & Blog</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow">
+        <div id="main-scroll-content">
+            
+            <!-- 1. HOMEPAGE -->
+            <section id="home" class="h-[calc(100vh-128px)] relative flex items-center justify-center border-b border-brand-gray">
+                <div class="absolute inset-0 z-0 opacity-20" style="background-image: radial-gradient(#D00000 1px, transparent 1px); background-size: 30px 30px;"></div>
+                <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+                    <h1 class="text-5xl md:text-8xl font-black text-white mb-4 uppercase tracking-widest leading-tight">
+                        Level Up Your <br><span class="text-glow-blue">Hangout</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-brand-light mb-8 font-medium">
+                        The ultimate arcade and gaming lounge. Play, connect, and conquer.
+                    </p>
+                    <div class="flex gap-4 justify-center">
+                        <button onclick="scrollToSection('services')" class="btn-red px-10 py-4 rounded font-bold text-lg uppercase tracking-wider">Explore Games</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. ABOUT US -->
+            <section id="about" class="py-24 px-4 border-b border-brand-gray">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl text-white font-bold mb-4">Who We Are</h2>
+                        <div class="h-1 w-24 bg-brand-red mx-auto mb-6"></div>
+                        <p class="text-xl max-w-3xl mx-auto">
+                            GameSpot was born from a high school work-based learning project (FLS/PCTO). We are a group of passionate students who wanted to create the ultimate gathering place for youth and gaming enthusiasts.
+                        </p>
+                    </div>
+
+                    <h3 class="text-3xl text-brand-blue text-center mb-10 uppercase tracking-widest">Our Team</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="bg-brand-gray p-6 rounded-xl border border-gray-700 text-center hover:border-brand-red transition-colors">
+                            <i class="fa-solid fa-user-tie text-brand-red text-4xl mb-4"></i>
+                            <h4 class="text-white text-xl font-bold">Ilaria D'amico & Francesco Arimene</h4>
+                            <p class="text-brand-gold font-medium mb-2">CEO & Founder</p>
+                            <p class="text-sm text-gray-400">Oversees the entire FLS project strategy and partnerships.</p>
+                        </div>
+                        <div class="bg-brand-gray p-6 rounded-xl border border-gray-700 text-center hover:border-brand-blue transition-colors">
+                            <i class="fa-solid fa-bullhorn text-brand-blue text-4xl mb-4"></i>
+                            <h4 class="text-white text-xl font-bold">Mattia Aprea</h4>
+                            <p class="text-brand-gold font-medium mb-2">Marketing Director</p>
+                            <p class="text-sm text-gray-400">Manages social media, promotions, and brand identity.</p>
+                        </div>
+                        <div class="bg-brand-gray p-6 rounded-xl border border-gray-700 text-center hover:border-brand-red transition-colors">
+                            <i class="fa-solid fa-microchip text-brand-red text-4xl mb-4"></i>
+                            <h4 class="text-white text-xl font-bold">Marco Flavoni</h4>
+                            <p class="text-brand-gold font-medium mb-2">Tech & IT Lead</p>
+                            <p class="text-sm text-gray-400">Ensures all PCs, consoles, and the website run perfectly.</p>
+                        </div>
+                        <div class="bg-brand-gray p-6 rounded-xl border border-gray-700 text-center hover:border-brand-blue transition-colors">
+                            <i class="fa-solid fa-calendar-check text-brand-blue text-4xl mb-4"></i>
+                            <h4 class="text-white text-xl font-bold">Angela Maria Scotti</h4>
+                            <p class="text-brand-gold font-medium mb-2">Event Coordinator</p>
+                            <p class="text-sm text-gray-400">Organizes e-sports tournaments and community events.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. SERVICES (Immagini incluse) -->
+            <section id="services" class="py-24 px-4 bg-brand-gray/30 border-b border-brand-gray">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl text-white font-bold mb-4">What We Offer</h2>
+                        <div class="h-1 w-24 bg-brand-blue mx-auto mb-6"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-brand-gray rounded-lg overflow-hidden border border-gray-700 group">
+                            <div class="h-48 overflow-hidden border-b border-brand-red">
+                                <img src="gaming pc zone.png" alt="[PC Gaming Station]" class="w-full h-full object-cover transition-transform group-hover:scale-110">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold text-white mb-2">Pro PC Arena</h3>
+                                <p class="mb-4 text-gray-400">High-end gaming rigs equipped with RTX 4080s and 240Hz monitors.</p>
+                                <span class="text-brand-red font-bold">€5.00 / Hour</span>
+                            </div>
+                        </div>
+                        <div class="bg-brand-gray rounded-lg overflow-hidden border border-gray-700 group">
+                            <div class="h-48 overflow-hidden border-b border-brand-blue">
+                                <img src="console lounge.png" alt="[Console Lounge Area]" class="w-full h-full object-cover transition-transform group-hover:scale-110">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold text-white mb-2">Console Lounge</h3>
+                                <p class="mb-4 text-gray-400">Relax on comfy sofas with PS5, Xbox Series X, and Nintendo Switch.</p>
+                                <span class="text-brand-blue font-bold">€4.00 / Hour</span>
+                            </div>
+                        </div>
+                        <div class="bg-brand-gray rounded-lg overflow-hidden border border-gray-700 group">
+                            <div class="h-48 overflow-hidden border-b border-brand-gold">
+                                <img src="vr zone.png" alt="[VR Station]" class="w-full h-full object-cover transition-transform group-hover:scale-110">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold text-white mb-2">VR Experience</h3>
+                                <p class="mb-4 text-gray-400">Step into new worlds with Meta Quest 3 and HTC Vive setups.</p>
+                                <span class="text-brand-gold font-bold">€8.00 / 30 Mins</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. FEEDBACK (Tutti i 5 studenti ricaricati) -->
+            <section id="feedback" class="py-24 px-4 border-b border-brand-gray">
+                <div class="max-w-6xl mx-auto">
+                    <h2 class="text-4xl text-white font-bold text-center mb-16">German Students Feedback 🇩🇪</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-brand-gray p-6 rounded-xl border-l-4 border-brand-red relative">
+                            <h4 class="text-white font-bold mb-2">Lukas M.</h4>
+                            <p class="italic text-gray-300">"The UI design is impressive. It feels like a professional e-sports platform. Great work on the branding!"</p>
+                            <div class="text-brand-gold text-sm mt-4">Rating: ★★★★★</div>
+                        </div>
+                        <div class="bg-brand-gray p-6 rounded-xl border-l-4 border-brand-blue relative">
+                            <h4 class="text-white font-bold mb-2">Sarah K.</h4>
+                            <p class="italic text-gray-300">"Very inclusive environment. I love how they balance retro gaming with modern VR technology."</p>
+                            <div class="text-brand-gold text-sm mt-4">Rating: ★★★★★</div>
+                        </div>
+                        <div class="bg-brand-gray p-6 rounded-xl border-l-4 border-brand-red relative">
+                            <h4 class="text-white font-bold mb-2">Jonas W.</h4>
+                            <p class="italic text-gray-300">"Technical setup is top-notch. The FLS team knows exactly what gamers need."</p>
+                            <div class="text-brand-gold text-sm mt-4">Rating: ★★★★☆</div>
+                        </div>
+                        <div class="bg-brand-gray p-6 rounded-xl border-l-4 border-brand-blue relative">
+                            <h4 class="text-white font-bold mb-2">Emma S.</h4>
+                            <p class="italic text-gray-300">"Super friendly team! They made us feel at home and the presentation was very clear."</p>
+                            <div class="text-brand-gold text-sm mt-4">Rating: ★★★★★</div>
+                        </div>
+                        <div class="bg-brand-gray p-6 rounded-xl border-l-4 border-brand-red relative lg:col-span-1 md:col-span-2">
+                            <h4 class="text-white font-bold mb-2">Max H.</h4>
+                            <p class="italic text-gray-300">"The mission statement is inspiring. This project has real potential in the market."</p>
+                            <div class="text-brand-gold text-sm mt-4">Rating: ★★★★☆</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. CONTACT (Informazioni ripristinate + AJAX) -->
+            <section id="contact" class="py-24 px-4 bg-brand-gray/30">
+                <div class="max-w-6xl mx-auto">
+                    <div class="flex flex-col md:flex-row gap-12 bg-brand-dark p-8 rounded-3xl border border-brand-red shadow-xl">
+                        <!-- Info ripristinate -->
+                        <div class="w-full md:w-1/3 space-y-8">
+                            <h3 class="text-2xl text-white font-bold mb-6 underline decoration-brand-red">Contact Info</h3>
+                            <div class="flex items-start gap-4">
+                                <i class="fa-solid fa-location-dot text-brand-red text-xl"></i>
+                                <div><h4 class="text-white font-bold">Address</h4><p class="text-gray-400">Via dei Lauri 19, 04011 Aprilia - Latina, Italy</p></div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i class="fa-solid fa-envelope text-brand-red text-xl"></i>
+                                <div><h4 class="text-white font-bold">Email</h4><p class="text-gray-400">info.gamespot.aprilia@gmail.com</p></div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i class="fa-solid fa-phone text-brand-red text-xl"></i>
+                                <div><h4 class="text-white font-bold">Phone</h4><p class="text-gray-400">+39 06 1234 5678</p></div>
+                            </div>
+                        </div>
+
+                        <!-- Form con gestione stato invio -->
+                        <div class="w-full md:w-2/3">
+                            <form id="ajax-form" action="https://formspree.io/f/mjgpvjkq" method="POST" class="space-y-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <input type="text" name="name" placeholder="Name" required class="w-full bg-brand-gray border border-gray-700 rounded-xl p-4 text-white focus:border-brand-red outline-none">
+                                    <input type="email" name="email" placeholder="Email" required class="w-full bg-brand-gray border border-gray-700 rounded-xl p-4 text-white focus:border-brand-red outline-none">
+                                </div>
+                                <input type="text" name="subject" placeholder="Subject" required class="w-full bg-brand-gray border border-gray-700 rounded-xl p-4 text-white focus:border-brand-red outline-none">
+                                <textarea name="message" placeholder="Message" rows="4" required class="w-full bg-brand-gray border border-gray-700 rounded-xl p-4 text-white focus:border-brand-red outline-none"></textarea>
+                                
+                                <button id="form-button" type="submit" class="w-full btn-red font-bold py-4 rounded-xl text-xl uppercase tracking-widest flex items-center justify-center gap-3">
+                                    <span>Send Message</span>
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                                <p id="form-status" class="text-center font-bold mt-2"></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 6. NEWS (Ripristinata) -->
+        <section id="news" class="py-16 px-4 bg-brand-dark min-h-screen">
+            <div class="max-w-6xl mx-auto">
+                <button onclick="closeNews()" class="text-brand-red font-bold flex items-center gap-2 mb-10 hover:underline">
+                    <i class="fa-solid fa-arrow-left"></i> BACK TO HOME
+                </button>
+                <h2 class="text-5xl text-white font-bold mb-12">Latest News</h2>
+                <div class="bg-brand-gray p-8 rounded-3xl border border-brand-red">
+                    <h3 class="text-3xl font-bold mb-4">International Exchange Success!</h3>
+                    <p class="text-xl text-gray-400 mb-6">Our collaboration with the German exchange students has successfully concluded with amazing feedback on our project accessibility.</p>
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200" alt="[Students Working]" class="rounded-xl w-full h-96 object-cover border border-gray-700">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-brand-gray border-t border-brand-red py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <!-- LOGO FOOTER -->
+            
+            <p class="text-gray-400 mb-6 uppercase tracking-widest text-sm">School Project FLS/PCTO - Developed by the Student Team.</p>
+            <div class="flex justify-center space-x-8 text-2xl">
+                <a href="https://www.instagram.com/gamespot_aprilia/" class="hover:text-brand-red transition-colors"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToSection(id) {
+            if (document.body.classList.contains('news-mode')) closeNews();
+            setTimeout(() => { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }, 50);
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        function openNews() { document.body.classList.add('news-mode'); window.scrollTo(0,0); }
+        function closeNews() { document.body.classList.remove('news-mode'); }
+        function goToHome() { if (document.body.classList.contains('news-mode')) closeNews(); else scrollToSection('home'); }
+        function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+
+        // --- INVIO FORM AJAX ---
+        const form = document.getElementById("ajax-form");
+        const button = document.getElementById("form-button");
+        const status = document.getElementById("form-status");
+
+        form.addEventListener("submit", async function(event) {
+            event.preventDefault();
+            button.disabled = true;
+            const originalContent = button.innerHTML;
+            button.innerHTML = "Sending...";
+            
+            const data = new FormData(event.target);
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    button.style.backgroundColor = "#22c55e";
+                    button.style.borderColor = "#22c55e";
+                    button.style.color = "#ffffff";
+                    button.innerHTML = "Message sent successfully! <i class='fa-solid fa-check ml-2'></i>";
+                    form.reset();
+                } else {
+                    button.style.backgroundColor = "#f97316";
+                    button.innerHTML = "Message not sent, try again";
+                }
+            }).catch(error => {
+                button.style.backgroundColor = "#f97316";
+                button.innerHTML = "Message not sent, try again";
+            });
+        });
+    </script>
+</body>
+</html>
